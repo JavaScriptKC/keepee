@@ -13,8 +13,7 @@ var WriteOperation = function (ws, key, value) {
       'success': [],
       'fail': []
    };
-
-   ws.on('confirm', function (d) {
+   var cb = function (d) {
       if (d.id !== id) {
          return;
       }
@@ -22,7 +21,12 @@ var WriteOperation = function (ws, key, value) {
       this.callbacks['success'].forEach(function (cb) {
          cb();
       });
-   }.bind(this));
+
+      ws.removeListener(cb);
+
+   }.bind(this);
+
+   ws.on('confirm', cb);
 };
 
 WriteOperation.prototype.commit = function () {
@@ -97,7 +101,7 @@ KeePee.prototype.read = function (key) {
 };
 
 
-var kp = new KeePee();
+var kp = new KeePee(ws);
 
 var writeOperation = kp.write('Foo', 'Bar');
 
