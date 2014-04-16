@@ -101,16 +101,4 @@ KeePee.prototype.read = function (key) {
 };
 
 
-var kp = new KeePee(ws);
-
-var writeOperation = kp.write('Foo', 'Bar');
-
-writeOperation.success(function () {
-
-});
-
-writeOperation.fail(function () {
-
-});
-
 

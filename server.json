@@ -10,7 +10,12 @@
                 "timeout": {
                     "server": 60000
                 },
-                "maxSockets": 300
+                "maxSockets": 300,
+                "cors": {
+                    "origin": [
+                        "*localhost:8080"
+                    ]
+                }
             }
         }
     ],
