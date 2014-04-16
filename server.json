@@ -1,0 +1,22 @@
+{
+    "pack": {
+
+    },
+    "servers": [
+        {
+            "port": 8080,
+            "options": {
+                "labels": ["api", "http"],
+                "timeout": {
+                    "server": 60000
+                },
+                "maxSockets": 300
+            }
+        }
+    ],
+    "plugins": {
+        "keepee": {
+
+        }
+    }
+}

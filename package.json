@@ -1,19 +1,30 @@
 {
   "name": "keepee",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Keepee",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test-cov",
+    "start": "hapi -c server.json"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nodekc/keepee.git"
+    "url": "git://github.com/nodekc/keepee.git"
   },
-  "author": "",
+  "keywords": [
+    "hapi"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nodekc/keepee/issues"
   },
-  "homepage": "https://github.com/nodekc/keepee"
+  "homepage": "https://github.com/nodekc/keepee",
+  "dependencies": {
+    "ws": "0.4.x",
+    "hoek": "1.x.x",
+    "hapi": "4.x.x"
+  },
+  "devDependencies": {
+    "lab": "3.x.x"
+  }
 }
