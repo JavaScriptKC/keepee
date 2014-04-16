@@ -56,8 +56,15 @@ ReadOperation.prototype.success = function (cb) {
 };
 
 var KeePee = function (ws) {
-   this.data = {};
-   this.ws = ws;
+   ws.on('keys', function (keys) {
+      for (var x in keys) {
+         var ro = this.read(keys[x]);
+
+         ro.success(function (d) {
+            this.data[d.key] = d;
+         }.bind(this));
+      }
+   }.bind(this));
 
    ws.on('write', function (d) {
       this.data[d.key] = d;
@@ -67,6 +74,11 @@ var KeePee = function (ws) {
    ws.on('read', function (key) {
       ws.emit('read', this.data[key]);
    });
+
+   ws.emit('keys');
+
+   this.data = {};
+   this.ws = ws;
 };
 
 KeePee.prototype.write = function (key, value) {
